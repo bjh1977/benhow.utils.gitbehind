@@ -1,30 +1,46 @@
 ﻿function Get-GitBehindStatus {
 [CmdletBinding()]
 param (
-    [string] $remoteBranch = 'origin/int',
-    [string] $localBranch,
-    [boolean] $ShowAhead = $false
+    [string] $differenceBranch = 'origin/master',
+    [string] $referenceBranch,
+    [switch] $ShowAhead = $false
 
 )
 
-    Write-Verbose "Comparing with remote branch '$remoteBranch'.."
-
-    $BranchStatus = git status
-
+    $gitCmd = "git status"
+    $BranchStatus = & Invoke-Expression $gitCmd 
     if ($null -eq $BranchStatus) {
         throw "Error calling git status.  Are you in a repository? Is git installed?"
     }
+    Write-Verbose ($BranchStatus | out-string)
 
-    if ([string]::IsNullOrEmpty($localBranch)) {
-        $localBranch = $BranchStatus[0].Replace('On branch ','')
+
+    if ([string]::IsNullOrEmpty($referenceBranch)) {
+        $referenceBranch = $BranchStatus[0].Replace('On branch ','')
     }
 
 
-    $gitCmd = "git rev-list --left-right --count $remoteBranch...$localBranch"
+    Write-Verbose "Comparing local branch '$referenceBranch' with remote branch '$differenceBranch'.."
+
+    
+    $gitCmd = "git fetch --all"
+    Write-Verbose "Calling $gitCmd"
+    $gitFetch = & Invoke-Expression $gitCmd 
+    if ($null -eq $gitFetch) {
+        throw "Error calling git fetch."
+    }
+    Write-Verbose  $gitFetch
+   
+
+
+    $gitCmd = "git rev-list --left-right --count $differenceBranch...$referenceBranch"
+    Write-Verbose "Calling $gitCmd"
     $gitRevList = & Invoke-Expression $gitCmd 
     if ($null -eq $gitRevList) {
-        throw "Error calling git rev-list.  Is the remote branch '$remoteBranch' correct?"
+        throw "Error calling git rev-list.  Is the remote branch '$differenceBranch' correct?"
     }
+    Write-Verbose  $gitRevList
+    
 
 
     $behindBy = ($gitRevList -split '\t')[0]
@@ -38,7 +54,7 @@ param (
     }
 
 
-    $Msg = "Branch '$localBranch' is behind '$remoteBranch' by $behindBy commits"
+    $Msg = "Branch '$referenceBranch' is behind '$differenceBranch' by $behindBy commits"
 
     if ($ShowAhead) {
         $Msg = "$Msg and ahead by $aheadBy commits"

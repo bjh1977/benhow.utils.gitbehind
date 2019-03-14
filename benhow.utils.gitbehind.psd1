@@ -12,8 +12,7 @@
 RootModule = 'benhow.utils.gitbehind'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
-
+ModuleVersion = '0.0.2'
 
 # ID used to uniquely identify this module
 GUID = '59dcc997-032f-4eba-a939-092aa3f2c023'
@@ -28,7 +27,7 @@ CompanyName = 'BenHow'
 Copyright = '(c) 2019 Ben Howard. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Quickly find if you have commits to merge in from a remote branch'
+Description = 'Quickly compare a branch with another to find out how many commits behind (and ahead) it is.  Requires git to be installed.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
