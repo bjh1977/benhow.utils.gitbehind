@@ -25,7 +25,7 @@ param (
     
     $gitCmd = "git fetch --all"
     Write-Verbose "Calling $gitCmd"
-    $gitFetch = & Invoke-Expression $gitCmd 
+    $gitFetch = & Invoke-Expression $gitCmd  2>&1
     if ($null -eq $gitFetch) {
         throw "Error calling git fetch."
     }

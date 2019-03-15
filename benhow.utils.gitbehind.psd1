@@ -12,7 +12,7 @@
 RootModule = 'benhow.utils.gitbehind'
 
 # Version number of this module.
-ModuleVersion = '0.0.2'
+ModuleVersion = '0.0.3'
 
 # ID used to uniquely identify this module
 GUID = '59dcc997-032f-4eba-a939-092aa3f2c023'
