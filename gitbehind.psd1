@@ -9,10 +9,10 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'benhow.utils.gitbehind'
+RootModule = 'gitbehind'
 
 # Version number of this module.
-ModuleVersion = '0.0.3'
+ModuleVersion = '0.0.1'
 
 # ID used to uniquely identify this module
 GUID = '59dcc997-032f-4eba-a939-092aa3f2c023'
@@ -27,7 +27,7 @@ CompanyName = 'BenHow'
 Copyright = '(c) 2019 Ben Howard. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Quickly compare a branch with another to find out how many commits behind (and ahead) it is.  Requires git to be installed.'
+Description = 'Quickly compare a branch with another to find out how many commits behind (and optionally, ahead) it is.  Requires git to be installed.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
