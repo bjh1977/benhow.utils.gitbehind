@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<metadata>
+<id>gitbehind</id>
+<version>0.0.2</version>
+<authors>Ben Howard</authors>
+<description>Quickly compare a branch with another to find out how many commits behind (and optionally, ahead) it is.  Requires git to be installed.</description>
+</metadata>
+<files>
+    <file src="..\src\gitbehind.psd1"/>
+    <file src="..\src\gitbehind.psm1"/>
+</files>
+</package>
